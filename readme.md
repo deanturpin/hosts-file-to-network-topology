@@ -6,7 +6,7 @@ comments.
 ./hosts2topology
 ```
 ```bash
-# Network hint
+# CIDR network description
 # 192.168.0.0/27
 
 # Normal hosts
