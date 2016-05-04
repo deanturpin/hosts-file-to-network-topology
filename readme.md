@@ -9,8 +9,7 @@ comments.
 # CIDR network description
 # 192.168.0.0/27
 
-# Normal hosts
-# Only the IP is used
+# Hosts - only the IP is used
 192.168.0.1 neque
 192.168.0.5 maxime
 192.168.0.6 ea
