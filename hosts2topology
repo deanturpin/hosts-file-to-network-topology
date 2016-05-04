@@ -16,7 +16,7 @@ function decimal2binary {
 		# Convert decimal to binary and append to result
 		binary+=${d2b[$BASH_REMATCH]}
 		
-		# Remove the match from current search
+		# Remove the match from search
 		ip=${ip/$BASH_REMATCH//}
 	done
 
