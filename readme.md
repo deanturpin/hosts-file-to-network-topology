@@ -4,7 +4,7 @@ stdout. The [CIDR](https://en.wikipedia.org/wiki/CIDR) info is extracted from
 the comments. If IPs are listed that don't match a netmask they are connected to
 the "unknown" network.
 
-The image is rendered using [Graphviz](graphviz.org).
+The image is rendered using [Graphviz](http://graphviz.org).
 
 ```bash
 ./hosts2topology < hosts > topology.png
