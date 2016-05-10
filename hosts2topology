@@ -36,7 +36,7 @@ for (( i=0; i<${#hosts[*]}; ++i )); do
 		nodes[$host]=unknown
 
 		# Check if there's another IP in the comment
-		[[ ${hosts[i]} =~ [#].*([[:digit:]\.]{7,}) ]] && connections[$host]=${BASH_REMATCH[1]}
+		[[ ${hosts[i]} =~ [#]\ ([[:digit:]\.]{7,}) ]] && connections[$host]=${BASH_REMATCH[1]}
 
 	else
 		# Does entry match a CIDR netmask?
@@ -84,4 +84,4 @@ for node in ${!connections[*]}; do dot+=("\"${connections[$node]}\"--\"$node\"; 
 dot+=("}")
 
 # Generate topology
-echo ${dot[*]} | circo -T png
+echo ${dot[*]} | circo -Tsvg
