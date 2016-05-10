@@ -25,4 +25,9 @@ The image is rendered using [Graphviz](http://graphviz.org).
 10.10.10.2 two
 ```
 
-![](https://rawgit.com/deanturpin/hosts-file-to-network-topology/connections/topology.svg)
+Output file type defaults to SVG but can be passed as a parameter.
+```bash
+./hosts2topology png < hosts > topology.png
+```
+
+[](topology.png)

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Check if output type provided
+[[ $# == 1 ]] && output_type=$1
+
 # Read hosts
 mapfile hosts
 
@@ -84,4 +87,4 @@ for node in ${!connections[*]}; do dot+=("\"${connections[$node]}\"--\"$node\"; 
 dot+=("}")
 
 # Generate topology
-echo ${dot[*]} | circo -Tsvg
+echo ${dot[*]} | circo -T${output_type-svg}
