@@ -25,7 +25,7 @@ The image is rendered using [Graphviz](http://graphviz.org).
 10.10.10.2 two
 ```
 
-Output file type defaults to SVG but can be passed as a parameter.
+Output file type defaults to SVG but can be passed in as a parameter.
 ```bash
 ./hosts2topology png < hosts > topology.png
 ```
