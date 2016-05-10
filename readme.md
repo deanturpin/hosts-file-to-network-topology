@@ -1,16 +1,16 @@
 ## Hosts file to network topology
-`hosts2topology` takes a plaintext hosts file on stdin and emits a PNG on
+`hosts2topology` takes a plaintext hosts file on stdin and emits an SVG on
 stdout. The [CIDR](https://en.wikipedia.org/wiki/CIDR) info is extracted from
 the comments. If IPs are listed that don't match a netmask they are connected to
 the "unknown" network.
 
-Connections between subnet can be indicated by adding a second IP in the comment
+Connections between subnets may be indicated by adding a second IP in the comment
 at the end of a line.
 
 The image is rendered using [Graphviz](http://graphviz.org).
 
 ```bash
-./hosts2topology < hosts > topology.png
+./hosts2topology < hosts > topology.svg
 ```
 ```bash
 # CIDR network description
