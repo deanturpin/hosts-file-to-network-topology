@@ -69,37 +69,33 @@ done
 dot=("graph { node [style=filled]; node [fillcolor=red]; ")
 
 # Dump netmasks
-dot+=("// Netmasks");
-for netmask in ${!netmasks[*]}; do
-	dot+=("\"$netmask\" [fillcolor=cyan]; ");
-done
+for netmask in ${!netmasks[*]}; do dot+=("\"$netmask\" [fillcolor=cyan]; "); done
 
 # Dump node info
-dot+=("// Nodes");
-for node in ${!nodes[*]}; do
-	dot+=("\"$node\" [fillcolor=white]; ");
-done
+for node in ${!nodes[*]}; do dot+=("\"$node\" [fillcolor=white]; "); done
 
-# Dump subnet
-dot+=("// Subnet");
-for node in ${!nodes[*]}; do
-	dot+=("\"$node\"--\"${nodes[$node]}\"; ");
-done
+# Dump subnets
+for node in ${!nodes[*]}; do dot+=("\"$node\"--\"${nodes[$node]}\"; "); done
 
-# Dump TBC
-dot+=("// Externals");
-for node in ${!connections[*]}; do
-	dot+=("\"$node\"--\"${connections[$node]}\"; ");
-done
+# Dump connections betwixt subnets
+for node in ${!connections[*]}; do dot+=("\"${connections[$node]}\"--\"$node\"; "); done
 
 # Footer
 dot+=("}")
 
+# Graphviz
+# dot - filter for drawing directed graphs
+# neato - filter for drawing undirected graphs
+# twopi - filter for radial layouts of graphs
+# circo - filter for circular layout of graphs
+# fdp - filter for drawing undirected graphs
+# sfdp - filter for drawing large undirected graphs
+# patchwork - filter for tree maps
+
 # Generate topology
-# circo -T png <<< $dot
+echo ${dot[*]} | twopi -T png
 
-# echo ${dot[*]} >&2
-
-for (( i=0; i<${#dot[*]}; ++i )); do
-	echo ${dot[i]}
-done
+# Also dump dot file to stderr
+# for (( i=0; i<${#dot[*]}; ++i )); do
+	# echo ${dot[i]} >&2
+# done
