@@ -30,4 +30,4 @@ Output file type defaults to SVG but can be passed in as a parameter.
 ./hosts2topology png < hosts > topology.png
 ```
 
-[](topology.png)
+![](topology.png)
