@@ -25,4 +25,4 @@ The image is rendered using [Graphviz](http://graphviz.org).
 10.10.10.2 two
 ```
 
-![](https://cdn.rawgit.com/deanturpin/hosts-file-to-network-topology/connections/topology.svg)
+![](https://rawgit.com/deanturpin/hosts-file-to-network-topology/connections/topology.svg)
