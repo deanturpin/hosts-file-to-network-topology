@@ -32,6 +32,7 @@ function decimal2binary {
 # Extract IPs and netmasks and initialise nodes
 declare -A nodes
 declare -A netmasks
+declare -A hostnames
 declare -A connections
 
 for (( i=0; i<${#hosts[*]}; ++i )); do
@@ -40,6 +41,9 @@ for (( i=0; i<${#hosts[*]}; ++i )); do
 	if [[ ${hosts[i]} =~ ^[[:digit:]\.]{7,} ]]; then
 		host=$BASH_REMATCH
 		nodes[$host]=unknown
+
+		# Extract hostnames
+		[[ ${hosts[i]} =~ ^[[:digit:]\.]{7,}\ *([^#]*) ]] && hostnames[$host]=${BASH_REMATCH[1]}
 
 		# Check if there's another IP in the comment
 		[[ ${hosts[i]} =~ [#]\ ([[:digit:]\.]{7,}) ]] && connections[$host]=${BASH_REMATCH[1]}
@@ -78,7 +82,7 @@ dot=("graph { node [style=filled]; node [fillcolor=red]; ")
 for netmask in ${!netmasks[*]}; do dot+=("\"$netmask\" [fillcolor=cyan]; "); done
 
 # Dump node info
-for node in ${!nodes[*]}; do dot+=("\"$node\" [fillcolor=white]; "); done
+for node in ${!nodes[*]}; do dot+=("\"$node\" [fillcolor=white label=\"${hostnames[$node]}\n$node\"]; "); done
 
 # Dump subnets
 for node in ${!nodes[*]}; do dot+=("\"$node\"--\"${nodes[$node]}\"; "); done
