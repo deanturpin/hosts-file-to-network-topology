@@ -43,7 +43,7 @@ for (( i=0; i<${#hosts[*]}; ++i )); do
 		nodes[$host]=unknown
 
 		# Extract hostnames
-		[[ ${hosts[i]} =~ ^[[:digit:]\.]{7,}\ *(.*)[#]* ]] && hostnames[$host]=${BASH_REMATCH[1]}
+		[[ ${hosts[i]} =~ ^[[:digit:]\.]{7,}\ *([^#]*) ]] && hostnames[$host]=${BASH_REMATCH[1]}
 
 		# Check if there's another IP in the comment
 		[[ ${hosts[i]} =~ [#]\ ([[:digit:]\.]{7,}) ]] && connections[$host]=${BASH_REMATCH[1]}
@@ -95,8 +95,3 @@ dot+=("}")
 
 # Generate topology
 echo ${dot[*]} | circo -T$output_type > $output_file
-echo ${dot[*]}
-
-# for name in ${hostnames[*]}; do
-# 	echo $name
-# done
