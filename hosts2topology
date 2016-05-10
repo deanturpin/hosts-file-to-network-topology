@@ -66,28 +66,40 @@ for ip in ${!nodes[*]}; do
 done
 
 # Header
-dot="graph { node [style=filled]; node [fillcolor=red]; "
+dot=("graph { node [style=filled]; node [fillcolor=red]; ")
 
 # Dump netmasks
+dot+=("// Netmasks");
 for netmask in ${!netmasks[*]}; do
-	dot+="\"$netmask\" [fillcolor=cyan]; ";
+	dot+=("\"$netmask\" [fillcolor=cyan]; ");
 done
 
 # Dump node info
-for node in ${!nodes[*]}; do dot+="\"$node\" [fillcolor=white]; "; done
+dot+=("// Nodes");
+for node in ${!nodes[*]}; do
+	dot+=("\"$node\" [fillcolor=white]; ");
+done
 
-# Dump connections
-for node in ${!nodes[*]}; do dot+="\"$node\"--\"${nodes[$node]}\"; "; done
+# Dump subnet
+dot+=("// Subnet");
+for node in ${!nodes[*]}; do
+	dot+=("\"$node\"--\"${nodes[$node]}\"; ");
+done
 
 # Dump TBC
+dot+=("// Externals");
 for node in ${!connections[*]}; do
-	dot+="\"$node\"--\"${connections[$node]}\"; ";
+	dot+=("\"$node\"--\"${connections[$node]}\"; ");
 done
 
 # Footer
-dot+="}"
+dot+=("}")
 
 # Generate topology
-circo -T png <<< $dot
+# circo -T png <<< $dot
 
-echo $dot >&2
+# echo ${dot[*]} >&2
+
+for (( i=0; i<${#dot[*]}; ++i )); do
+	echo ${dot[i]}
+done
