@@ -36,7 +36,7 @@ for (( i=0; i<${#hosts[*]}; ++i )); do
 		nodes[$host]=unknown
 
 		# Check if there's another IP in the comment
-		[[ ${hosts[i]} =~ alias\ ([[:digit:]\.]{7,}) ]] && connections[$host]=${BASH_REMATCH[1]}
+		[[ ${hosts[i]} =~ [#].*([[:digit:]\.]{7,}) ]] && connections[$host]=${BASH_REMATCH[1]}
 
 	else
 		# Does entry match a CIDR netmask?
@@ -83,19 +83,5 @@ for node in ${!connections[*]}; do dot+=("\"${connections[$node]}\"--\"$node\"; 
 # Footer
 dot+=("}")
 
-# Graphviz
-# dot - filter for drawing directed graphs
-# neato - filter for drawing undirected graphs
-# twopi - filter for radial layouts of graphs
-# circo - filter for circular layout of graphs
-# fdp - filter for drawing undirected graphs
-# sfdp - filter for drawing large undirected graphs
-# patchwork - filter for tree maps
-
 # Generate topology
-echo ${dot[*]} | twopi -T png
-
-# Also dump dot file to stderr
-# for (( i=0; i<${#dot[*]}; ++i )); do
-	# echo ${dot[i]} >&2
-# done
+echo ${dot[*]} | circo -T png
