@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Check if output type provided
-[[ $# == 1 ]] && output_type=$1
+[[ $# == 1 ]] && output_file=$1 || output_file=topology.svg
+
+# Calculate output file type from extension
+output_type=${output_file#*.}
 
 # Read hosts
 mapfile hosts
@@ -87,4 +90,4 @@ for node in ${!connections[*]}; do dot+=("\"${connections[$node]}\"--\"$node\"; 
 dot+=("}")
 
 # Generate topology
-echo ${dot[*]} | circo -T${output_type-svg}
+echo ${dot[*]} | circo -T$output_type > $output_file

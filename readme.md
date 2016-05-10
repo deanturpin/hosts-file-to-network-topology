@@ -1,6 +1,6 @@
 ## Hosts file to network topology
-`hosts2topology` takes a plaintext hosts file on stdin and emits an SVG on
-stdout. The [CIDR](https://en.wikipedia.org/wiki/CIDR) info is extracted from
+By default `hosts2topology` takes a plaintext hosts file on stdin and creates a
+file `topology.svg`. The [CIDR](https://en.wikipedia.org/wiki/CIDR) info is extracted from
 the comments. If IPs are listed that don't match a netmask they are connected to
 the "unknown" network.
 
@@ -9,8 +9,9 @@ at the end of a line.
 
 The image is rendered using [Graphviz](http://graphviz.org).
 
+`topology.svg` is create in the current directory.
 ```bash
-./hosts2topology < hosts > topology.svg
+./hosts2topology < hosts
 ```
 ```bash
 # CIDR network description
@@ -24,10 +25,12 @@ The image is rendered using [Graphviz](http://graphviz.org).
 10.10.10.1 one
 10.10.10.2 two
 ```
-
-Output file type defaults to SVG but can be passed in as a parameter.
+Output file name and type may be overridden by supplying a parameter.
 ```bash
-./hosts2topology png < hosts > topology.png
+./hosts2topology one.jpg < hosts
+```
+```bash
+./hosts2topology two.gif < hosts
 ```
 
 ![](topology.png)
