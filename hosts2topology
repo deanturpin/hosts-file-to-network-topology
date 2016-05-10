@@ -26,12 +26,18 @@ function decimal2binary {
 # Extract IPs and netmasks and initialise nodes
 declare -A nodes
 declare -A netmasks
+declare -A connections
 
 for (( i=0; i<${#hosts[*]}; ++i )); do
 
 	# Does entry match an IP?
 	if [[ ${hosts[i]} =~ ^[[:digit:]\.]{7,} ]]; then
-		nodes[$BASH_REMATCH]=unknown
+		host=$BASH_REMATCH
+		nodes[$host]=unknown
+
+		# Check if there's another IP in the comment
+		[[ ${hosts[i]} =~ alias\ ([[:digit:]\.]{7,}) ]] && connections[$host]=${BASH_REMATCH[1]}
+
 	else
 		# Does entry match a CIDR netmask?
 		[[ ${hosts[i]} =~ ([[:digit:]\.]{7,})/([[:digit:]]{2}) ]] && netmasks[${BASH_REMATCH[1]}]=${BASH_REMATCH[2]}
@@ -63,7 +69,9 @@ done
 dot="graph { node [style=filled]; node [fillcolor=red]; "
 
 # Dump netmasks
-for netmask in ${!netmasks[*]}; do dot+="\"$netmask\" [fillcolor=cyan]; "; done
+for netmask in ${!netmasks[*]}; do
+	dot+="\"$netmask\" [fillcolor=cyan]; ";
+done
 
 # Dump node info
 for node in ${!nodes[*]}; do dot+="\"$node\" [fillcolor=white]; "; done
@@ -71,8 +79,15 @@ for node in ${!nodes[*]}; do dot+="\"$node\" [fillcolor=white]; "; done
 # Dump connections
 for node in ${!nodes[*]}; do dot+="\"$node\"--\"${nodes[$node]}\"; "; done
 
+# Dump TBC
+for node in ${!connections[*]}; do
+	dot+="\"$node\"--\"${connections[$node]}\"; ";
+done
+
 # Footer
 dot+="}"
 
 # Generate topology
 circo -T png <<< $dot
+
+echo $dot >&2
