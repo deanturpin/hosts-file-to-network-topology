@@ -41,7 +41,8 @@ Graphviz supports various rendering engines which can be specified on the
 command line.
 
 ```bash
-./hosts2topology three.png fdp < hosts
+./hosts2topology three.png sfdp < hosts
+./hosts2topology four.gif neato < hosts
 ```
 
 Running `./generate_all` will create them all in the current directory.
