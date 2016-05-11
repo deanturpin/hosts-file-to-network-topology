@@ -5,7 +5,7 @@ file `topology.svg` in the current directory. The
 in the hosts file. If IPs are listed that don't match a netmask they are
 connected to the "unknown" network.
 
-Connections between subnets may be indicated by adding a second IP in the comment
+Connections between subnets are indicated by adding a second IP in the comment
 at the end of a line.
 
 The image is rendered using [Graphviz](http://graphviz.org).
@@ -25,7 +25,7 @@ The image is rendered using [Graphviz](http://graphviz.org).
 10.10.10.1 one
 10.10.10.2 two
 ```
-Output file name and type may be overridden by supplying a parameter.
+Output file name and type can be overridden by supplying a file name.
 ```bash
 ./hosts2topology one.jpg < hosts
 ./hosts2topology two.gif < hosts
@@ -35,10 +35,13 @@ Output file name and type may be overridden by supplying a parameter.
 
 ##Alternative rendering engines
 Graphviz supports various rendering engines which can be specified on the
-command line. Running `./generate_all` will create them all in the current
-directory.
+command line.
 
+```bash
 ./hosts2topology three.png fdp < hosts
+```
+
+Running `./generate_all` will create them all in the current directory.
 
 ###circo (the default)
 ![](circo.png)
