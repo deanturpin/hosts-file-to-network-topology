@@ -1,4 +1,4 @@
-## Hosts file to network topology
+# Hosts file to network topology
 By default `hosts2topology` takes a plaintext hosts file on stdin and creates a
 file `topology.svg` in the current directory. The
 [CIDR](https://en.wikipedia.org/wiki/CIDR) info is extracted from the comments
