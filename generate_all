@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# dot - filter for drawing directed graphs
+# neato - filter for drawing undirected graphs
+# twopi - filter for radial layouts of graphs
+# circo - filter for circular layout of graphs
+# fdp - filter for drawing undirected graphs
+# sfdp - filter for drawing large undirected graphs
+# patchwork - filter for tree maps
+
+echo Generate all graphs
+engines=( dot neato twopi circo fdp sfdp patchwork )
+for engine in ${engines[*]}; do
+	./hosts2topology $engine.png $engine < hosts
+done

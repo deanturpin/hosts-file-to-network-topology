@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Check if output type provided
-[[ $# == 1 ]] && output_file=$1 || output_file=topology.svg
+# Check if output type has been provided
+(( $# >= 1 )) && output_file=$1 || output_file=topology.svg
+
+# Check if rendering engine has been provided
+(( $# == 2 )) && engine=$2 || engine=circo
 
 # Calculate output file type from extension
 output_type=${output_file#*.}
@@ -96,4 +99,4 @@ for node in ${!connections[*]}; do dot+=("\"${connections[$node]}\"--\"$node\"; 
 dot+=("}")
 
 # Generate topology
-echo ${dot[*]} | circo -T$output_type > $output_file
+echo ${dot[*]} | $engine -T$output_type > $output_file

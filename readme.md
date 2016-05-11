@@ -31,4 +31,32 @@ Output file name and type may be overridden by supplying a parameter.
 ./hosts2topology two.gif < hosts
 ```
 
-![](topology.png)
+![](circo.png)
+
+##Alternative rendering engines
+Graphviz supports various rendering engines which can be specified on the
+command line. Running `./generate_all` will create them all in the current
+directory.
+
+./hosts2topology three.png fdp < hosts
+
+###circo
+![](circo.png)
+
+###dot
+![](dot.png)
+
+###neato
+![](neato.png)
+
+###fdp
+![](fdp.png)
+
+###sfdp
+![](sfdp.png)
+
+###twopi
+![](twopi.png)
+
+###patchwork
+![](patchwork.png)
