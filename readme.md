@@ -27,14 +27,15 @@ at the end of a line.
 10.10.10.2 two
 ```
 
+![](circo.png)
+
+##Output file type
 Output file name and type can be overridden by supplying a file name.
 
 ```bash
 ./hosts2topology one.jpg < hosts
 ./hosts2topology two.gif < hosts
 ```
-
-![](circo.png)
 
 ##Alternative rendering engines
 Graphviz supports various rendering engines which can be specified on the
