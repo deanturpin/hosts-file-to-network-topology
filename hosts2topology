@@ -81,7 +81,7 @@ done
 dot=("graph { node [style=filled]; node [fillcolor=red]; label=\"hosts2topology - $(date)\"; ")
 
 # Dump netmasks
-for netmask in ${!netmasks[*]}; do dot+=("\"$netmask\" [fillcolor=cyan]; "); done
+for netmask in ${!netmasks[*]}; do dot+=("\"$netmask\" [fillcolor=cyan label=\"switch\n$netmask/${netmasks[$netmask]}\"]; "); done
 
 # Dump node info
 for node in ${!nodes[*]}; do dot+=("\"$node\" [fillcolor=white label=\"${hostnames[$node]}\n$node\"]; "); done
