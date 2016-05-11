@@ -6,7 +6,7 @@
 # Calculate output file type from extension
 output_type=${output_file#*.}
 
-# Read hosts
+# Read hosts from stdin
 mapfile hosts
 
 # Decimal to binary netmask converter
