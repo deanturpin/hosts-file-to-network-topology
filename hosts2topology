@@ -29,16 +29,18 @@ function decimal2binary {
 	echo $binary
 }
 
-# Extract IPs and netmasks and initialise nodes
+# Create associative arrays
 declare -A nodes
 declare -A netmasks
 declare -A hostnames
 declare -A connections
 
+# Loop through each host
 for (( i=0; i<${#hosts[*]}; ++i )); do
 
 	# Does entry match an IP?
 	if [[ ${hosts[i]} =~ ^[[:digit:]\.]{7,} ]]; then
+
 		host=$BASH_REMATCH
 		nodes[$host]=unknown
 
@@ -76,7 +78,7 @@ for ip in ${!nodes[*]}; do
 done
 
 # Header
-dot=("graph { node [style=filled]; node [fillcolor=red]; ")
+dot=("graph { node [style=filled]; node [fillcolor=red]; label=\"hosts2topology - $(date)\"; ")
 
 # Dump netmasks
 for netmask in ${!netmasks[*]}; do dot+=("\"$netmask\" [fillcolor=cyan]; "); done
