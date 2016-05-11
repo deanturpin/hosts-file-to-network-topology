@@ -40,7 +40,7 @@ directory.
 
 ./hosts2topology three.png fdp < hosts
 
-###circo
+###circo (the default)
 ![](circo.png)
 
 ###dot
