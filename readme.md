@@ -29,7 +29,6 @@ at the end of a line.
 10.10.10.2 two
 ```
 
-###Output file type
 Output file name and type can be overridden by supplying a file name.
 
 ```bash
