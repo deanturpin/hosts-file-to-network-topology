@@ -11,6 +11,8 @@ The image is rendered using [Graphviz](http://graphviz.org).
 ./hosts2topology < hosts
 ```
 
+![](circo.png)
+
 Connections between subnets are indicated by adding a second IP in the comment
 at the end of a line.
 
@@ -27,9 +29,7 @@ at the end of a line.
 10.10.10.2 two
 ```
 
-![](circo.png)
-
-##Output file type
+###Output file type
 Output file name and type can be overridden by supplying a file name.
 
 ```bash
