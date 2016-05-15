@@ -11,7 +11,7 @@ The image is rendered using [Graphviz](http://graphviz.org).
 ./hosts2topology < hosts
 ```
 
-![](circo.png)
+![](render/circo.png)
 
 Connections between subnets are indicated by adding a second IP in the comment
 at the end of a line.
@@ -48,22 +48,22 @@ command line.
 Running `./generate_all` will create them all in the current directory.
 
 ###circo (the default)
-![](circo.png)
+![](render/circo.png)
 
 ###dot
-![](dot.png)
+![](render/dot.png)
 
 ###neato
-![](neato.png)
+![](render/neato.png)
 
 ###fdp
-![](fdp.png)
+![](render/fdp.png)
 
 ###sfdp
-![](sfdp.png)
+![](render/sfdp.png)
 
 ###twopi
-![](twopi.png)
+![](render/twopi.png)
 
 ###patchwork
-![](patchwork.png)
+![](render/patchwork.png)
