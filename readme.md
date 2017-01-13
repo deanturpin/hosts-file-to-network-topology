@@ -1,3 +1,7 @@
+Not in active development. Outstanding issues tagged as wontfix and closed.
+
+----
+
 # Hosts file to network topology
 By default `hosts2topology` takes a plaintext hosts file on stdin and creates a
 file `topology.svg` in the current directory. The
