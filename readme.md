@@ -1,5 +1,7 @@
 Not in active development. Outstanding issues tagged as wontfix and closed.
 
+Superseded by [host2dot](https://github.com/deanturpin/hosts2dot).
+
 ----
 
 # Hosts file to network topology
